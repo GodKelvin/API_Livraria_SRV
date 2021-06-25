@@ -1,5 +1,7 @@
 require_relative '../model/author_book'
 require_relative '../model/author'
+require_relative '../model/like'
+require_relative '../model/user'
 
 namespace('/api/v1/teste') do
     get('') do
