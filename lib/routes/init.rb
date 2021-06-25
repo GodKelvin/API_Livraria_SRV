@@ -3,7 +3,10 @@ require 'sinatra/reloader'
 require 'sinatra/contrib'
 require 'json'
 
-require_relative 'livros'
+require_relative 'teste'
+require_relative 'books'
+require_relative 'publishers'
+
 
 #Especifica para todas as rotas que o return eh um JSON
 before do
