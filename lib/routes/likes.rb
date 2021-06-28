@@ -1,17 +1,15 @@
-require_relative '../model/book'
+require_relative '../model/like'
 
-
-
-namespace('/api/v1/books') do
+namespace('/api/v1/likes') do
     get('') do
-        result = Book.all.as_json
+        result = Like.all.as_json
         halt(200, result.to_json)
         rescue Exception => error
             halt(500, {error: error.message}.to_json)
     end
 
-    get('/:id_book') do |id_book|
-        result = Book.find(id_book)
+    get('/:id_like') do |id_like|
+        result = Like.find(id_like)
         halt(200, result.to_json)
         rescue Exception => error
             halt(500, {error: error.message}.to_json)
@@ -19,29 +17,29 @@ namespace('/api/v1/books') do
 
     post('') do 
         body = JSON.parse(request.body.read)
-        new_book = Book.new(body)
-        new_book.save
-        halt(200, new_book.to_json)
+        new_like = Like.new(body)
+        new_like.save
+        halt(200, new_like.to_json)
         rescue Exception => error
             halt(500, {error: error.message}.to_json)
     end
 
     patch('') do 
         body = JSON.parse(request.body.read)
-        book = Book.find(body['id'])
-        book.update(body)
-        book.save
-        halt(200, book.to_json)
+        like = Like.find(body['id'])
+        like.update(body)
+        like.save
+        halt(200, user.to_json)
         rescue Exception => error
             halt(500, {error: error.message}.to_json)
     end
 
     delete('/:id') do |id|
-        book = Book.find(id)
-        book.destroy
-        halt(200, book.to_json)
-
+        like = Like.find(id)
+        like.destroy
+        halt(200, like.to_json)
         rescue Exception => error
             halt(500, {error: error.message}.to_json)
     end
 end
+

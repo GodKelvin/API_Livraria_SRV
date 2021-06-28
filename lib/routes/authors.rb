@@ -1,17 +1,15 @@
-require_relative '../model/book'
+require_relative '../model/author'
 
-
-
-namespace('/api/v1/books') do
+namespace('/api/v1/authors') do
     get('') do
-        result = Book.all.as_json
+        result = Author.all.as_json
         halt(200, result.to_json)
         rescue Exception => error
             halt(500, {error: error.message}.to_json)
     end
 
-    get('/:id_book') do |id_book|
-        result = Book.find(id_book)
+    get('/:id_author') do |id_author|
+        result = Author.find(id_author)
         halt(200, result.to_json)
         rescue Exception => error
             halt(500, {error: error.message}.to_json)
@@ -19,29 +17,29 @@ namespace('/api/v1/books') do
 
     post('') do 
         body = JSON.parse(request.body.read)
-        new_book = Book.new(body)
-        new_book.save
-        halt(200, new_book.to_json)
+        new_author = Author.new(body)
+        new_author.save
+        halt(200, new_author.to_json)
         rescue Exception => error
             halt(500, {error: error.message}.to_json)
     end
 
     patch('') do 
         body = JSON.parse(request.body.read)
-        book = Book.find(body['id'])
-        book.update(body)
-        book.save
-        halt(200, book.to_json)
+        user = Author.find(body['id'])
+        user.update(body)
+        user.save
+        halt(200, user.to_json)
         rescue Exception => error
             halt(500, {error: error.message}.to_json)
     end
 
     delete('/:id') do |id|
-        book = Book.find(id)
-        book.destroy
-        halt(200, book.to_json)
-
+        author = Author.find(id)
+        author.destroy
+        halt(200, author.to_json)
         rescue Exception => error
             halt(500, {error: error.message}.to_json)
     end
 end
+
