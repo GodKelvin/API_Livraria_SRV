@@ -1,4 +1,4 @@
-class Author_Book < ActiveRecord::Base
+class AuthorsBook < ActiveRecord::Base
     #belongs_to :author
     #belongs_to :book
     #has_and_belongs_to_many :authors

@@ -6,12 +6,6 @@ require 'mysql2'
 #importando as rotas
 require_relative 'lib/routes/init'
 
-#Rota Basica
-get('/api/v1') do
-    puts Livro.all
-    halt(200, {message: "Hello World!. Devesenvolvidor por Kelvin Lehrback. Real Seguro Viagem"}.to_json)
-end
-
 #Configuracao do banco de dados
 ActiveRecord::Base.establish_connection(
     :adapter => "mysql2",
