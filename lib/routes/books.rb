@@ -1,6 +1,5 @@
 require_relative '../model/book'
-
-
+require_relative '../model/like'
 
 namespace('/api/v1/books') do
     get('') do
@@ -11,7 +10,7 @@ namespace('/api/v1/books') do
     end
 
     get('/:id_book') do |id_book|
-        result = Book.find(id_book)
+        result = Book.find_by_id(id_book)
         halt(200, result.to_json)
         rescue Exception => error
             halt(500, {error: error.message}.to_json)
@@ -28,18 +27,27 @@ namespace('/api/v1/books') do
 
     patch('') do 
         body = JSON.parse(request.body.read)
-        book = Book.find(body['id'])
-        book.update(body)
-        book.save
-        halt(200, book.to_json)
+        book = Book.find_by_id(body['id'])
+        if(book)
+            book.update(body)
+            book.save
+            halt(200, book.to_json)
+        else
+            halt(200, {msg: "Livro nao encontraod"}.to_json)
+        end
         rescue Exception => error
             halt(500, {error: error.message}.to_json)
     end
 
     delete('/:id') do |id|
-        book = Book.find(id)
-        book.destroy
-        halt(200, book.to_json)
+        if(Book.exists?(id)) 
+            book = Book.find(id).destroy
+            #Excluo os likes que foram dados no respectivo livro destruido
+            Like.where("ref_type = ? AND ref_id = ?", "books", id).delete_all
+            halt(200, book.to_json)
+        else
+            halt(200, {msg: "Livro não encontrado"}.to_json)
+        end
 
         rescue Exception => error
             halt(500, {error: error.message}.to_json)

@@ -42,4 +42,3 @@ namespace('/api/v1/authors') do
             halt(500, {error: error.message}.to_json)
     end
 end
-
