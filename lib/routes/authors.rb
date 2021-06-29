@@ -9,7 +9,7 @@ namespace('/api/v1/authors') do
     end
 
     get('/:id_author') do |id_author|
-        result = Author.find(id_author)
+        result = Author.find_by_id(id_author)
         halt(200, result.to_json)
         rescue Exception => error
             halt(500, {error: error.message}.to_json)

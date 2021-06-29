@@ -43,7 +43,8 @@ namespace('/api/v1/books') do
         if(Book.exists?(id)) 
             book = Book.find(id).destroy
             #Excluo os likes que foram dados no respectivo livro destruido
-            Like.where("ref_type = ? AND ref_id = ?", "books", id).delete_all
+            #Like.where("ref_type = ? AND ref_id = ?", "books", id).delete_all
+            book.delete_all_likes
             halt(200, book.to_json)
         else
             halt(200, {msg: "Livro não encontrado"}.to_json)
