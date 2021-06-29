@@ -1,7 +1,7 @@
 class User < ActiveRecord::Migration[6.1]
     def create
         create_table :users do |u|
-            u.string name
+            u.string :name
         end
     end
 

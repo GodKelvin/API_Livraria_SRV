@@ -20,8 +20,8 @@ authors_books.drop
 books.drop
 publishers.drop
 authors.drop
-users.drop
 likes.drop
+users.drop
 
 publishers.create
 books.create
@@ -31,6 +31,7 @@ users.create
 likes.create
 
 #Inserindo dados na estrutura
+
 
 
 
