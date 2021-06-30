@@ -17,7 +17,7 @@ namespace('/api/v1/books') do
     end
 
     get('/published/:id_book') do |id_book|
-        puts Book.published.as_json
+        #puts Book.published.as_json
         result = Book.find_by_id(id_book)
         if(result) 
             halt(200, result.published.to_json)
@@ -78,7 +78,6 @@ namespace('/api/v1/books') do
         if(Book.exists?(id)) 
             book = Book.find(id).destroy
             #Excluo os likes que foram dados no respectivo livro destruido
-            #Like.where("ref_type = ? AND ref_id = ?", "books", id).delete_all
             book.delete_all_likes
             halt(200, book.to_json)
         else

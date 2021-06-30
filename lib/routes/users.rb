@@ -17,7 +17,7 @@ namespace('/api/v1/users') do
 
 
     get('/likes/:id_user') do |id_user|
-        puts User.likes.as_json
+        #puts User.likes.as_json
         user = User.find_by_id(id_user)
         if(user)
             halt(200, user.likes.to_json)
