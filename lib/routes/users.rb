@@ -15,6 +15,19 @@ namespace('/api/v1/users') do
             halt(500, {error: error.message}.to_json)
     end
 
+
+    get('/likes/:id_user') do |id_user|
+        puts User.likes.as_json
+        user = User.find_by_id(id_user)
+        if(user)
+            halt(200, user.likes.to_json)
+        else
+            halt(200, {msg: "Usuário não encontrado"}.to_json)
+        end
+        rescue Exception => error
+            halt(500, {error: error.message}.to_json)        
+    end
+
     post('') do 
         begin 
             body = JSON.parse(request.body.read)

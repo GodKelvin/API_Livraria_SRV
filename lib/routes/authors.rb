@@ -15,6 +15,17 @@ namespace('/api/v1/authors') do
             halt(500, {error: error.message}.to_json)
     end
 
+    get('/books/:id_author') do |id_author|
+        result = Author.find_by_id(id_author)
+        if(result)
+            halt(200, result.books.to_json)
+        else
+            halt(200, {msg:"Author não encontrado"}.to_json)
+        end
+        rescue Exception => error
+            halt(500, {error: error.message}.to_json)
+    end
+
     post('') do 
         body = JSON.parse(request.body.read)
         new_author = Author.new(body)

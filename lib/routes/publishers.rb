@@ -15,6 +15,17 @@ namespace('/api/v1/publishers') do
             halt(500, {error: error.message}.to_json)
     end
 
+    get('/books/:id_publisher') do |id_publisher|
+        result = Publisher.find_by_id(id_publisher)
+        if(result)
+            halt(200, result.books.to_json)
+        else 
+            halt(200, {msg:"Editora não encontrada"}.to_json)
+        end
+        rescue Exception => error
+            halt(500, {error: error.message}.to_json)
+    end
+
     post('') do
         body = JSON.parse(request.body.read)
         new_publisher = Publisher.new(body)

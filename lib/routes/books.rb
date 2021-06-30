@@ -16,6 +16,41 @@ namespace('/api/v1/books') do
             halt(500, {error: error.message}.to_json)
     end
 
+    get('/published/:id_book') do |id_book|
+        puts Book.published.as_json
+        result = Book.find_by_id(id_book)
+        if(result) 
+            halt(200, result.published.to_json)
+        else 
+            halt(200, {msg:"Livro não encontrado"}.to_json)
+        end
+        rescue Exception => error
+            halt(500, {error: error.message}.to_json)
+    end
+
+    get('/publisher/:id_book') do |id_book|
+        result = Book.find_by_id(id_book)
+        if(result) 
+            halt(200, result.publisher.to_json)
+        else 
+            halt(200, {msg:"Livro não encontrado"}.to_json)
+        end
+        rescue Exception => error
+            halt(500, {error: error.message}.to_json)
+    end
+
+    get('/authors/:id_book') do |id_book|
+        result = Book.find_by_id(id_book)
+        if(result) 
+            halt(200, result.authors.to_json)
+        else 
+            halt(200, {msg:"Livro não encontrado"}.to_json)
+        end
+        rescue Exception => error
+            halt(500, {error: error.message}.to_json)
+    end
+
+        
     post('') do 
         body = JSON.parse(request.body.read)
         new_book = Book.new(body)
