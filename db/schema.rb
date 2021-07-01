@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_01_151932) do
+ActiveRecord::Schema.define(version: 2021_07_01_180157) do
 
   create_table "authors", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", limit: 45, null: false
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 2021_07_01_151932) do
 
   create_table "users", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", limit: 45
+    t.date "born_date"
   end
 
   add_foreign_key "authors_books", "authors", name: "authors_books_ibfk_1"

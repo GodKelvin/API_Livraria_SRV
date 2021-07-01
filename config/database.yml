@@ -1,11 +1,13 @@
 development:
-  adapter: mysql2
-  database: livraria_SRV
-  username: kelvinbd
-  password: 1998
+  host: motty.db.elephantsql.com
+  adapter: postgresql
+  database: hgnjrpkh
+  username: hgnjrpkh
+  password: oe1QWu3dPqUoMMTf84OKIBTtxuAXL6Lt
 
 test:
-  adapter: mysql2
-  database: livraria_SRV
-  username: kelvinbd
-  password: 1998
+  hots: motty.db.elephantsql.com
+  adapter: postgresql
+  database: hgnjrpkh
+  username: hgnjrpkh
+  password: oe1QWu3dPqUoMMTf84OKIBTtxuAXL6Lt
