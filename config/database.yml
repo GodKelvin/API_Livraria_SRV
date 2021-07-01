@@ -1,0 +1,11 @@
+development:
+  adapter: mysql2
+  database: livraria_SRV
+  username: kelvinbd
+  password: 1998
+
+test:
+  adapter: mysql2
+  database: livraria_SRV
+  username: kelvinbd
+  password: 1998

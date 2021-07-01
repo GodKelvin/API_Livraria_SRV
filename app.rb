@@ -7,10 +7,4 @@ require 'mysql2'
 require_relative 'lib/routes/init'
 
 #Configuracao do banco de dados
-ActiveRecord::Base.establish_connection(
-    :adapter => "mysql2",
-    :host => "localhost",
-    :username => "kelvinbd",
-    :password => "1998",
-    :database => "livraria_SRV"
-);
+require_relative 'config/config_db.rb'
