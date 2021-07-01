@@ -5,6 +5,15 @@ class User < ActiveRecord::Base
     #All likes
     scope :likes, -> {where(likes)}
 
+    #scope :likes.books, -> {where(likes.ref_type: "books")}
+
+    def like_books
+        result = User.likes.where(ref_type: 'books')
+        #result = User.joins(:likes).where(:likes: {ref_type: 'books'})
+        puts result.as_json
+    end
+
+
     #Likes in livros
     #scope :likes.books, -> {where(likes)}
     #scope :likes.books -> {joins(books)}
