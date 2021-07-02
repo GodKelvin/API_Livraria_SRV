@@ -1,4 +1,4 @@
-class Createauthorsbooks < ActiveRecord::Migration[6.1]
+class Createauthors < ActiveRecord::Migration[6.1]
   def change
     create_table :authors do |a|
       a.string :name
