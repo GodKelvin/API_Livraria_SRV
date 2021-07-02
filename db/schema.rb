@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_01_180157) do
+ActiveRecord::Schema.define(version: 2021_07_02_174211) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
@@ -68,7 +68,6 @@ ActiveRecord::Schema.define(version: 2021_07_01_180157) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
-    t.date "born_date"
   end
 
   add_foreign_key "authors_books", "authors"
