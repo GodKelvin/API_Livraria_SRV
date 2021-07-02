@@ -1,3 +1,4 @@
+require 'rack'
 require 'sinatra'
 require 'sinatra/activerecord'
 #require 'mysql2'
