@@ -11,3 +11,10 @@ test:
   database: hgnjrpkh
   username: hgnjrpkh
   password: oe1QWu3dPqUoMMTf84OKIBTtxuAXL6Lt 
+
+production:
+  host: motty.db.elephantsql.com
+  adapter: postgresql
+  database: hgnjrpkh
+  username: hgnjrpkh
+  password: oe1QWu3dPqUoMMTf84OKIBTtxuAXL6Lt 
