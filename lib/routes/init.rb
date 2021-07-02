@@ -9,6 +9,7 @@ require_relative 'publishers'
 require_relative 'users'
 require_relative 'authors'
 require_relative 'likes'
+require_relative 'authors_books'
 
 
 #Especifica para todas as rotas que o return eh um JSON

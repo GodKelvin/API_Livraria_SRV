@@ -5,7 +5,7 @@ class Book < ActiveRecord::Base
     validates :name, :publisher_id, :published, :presence => true
 
     scope :published, -> {where(published: true)}
-    scope :publisher.name, -> {where(publisher.name)}
+    #scope :publisher.name, -> {where(publisher.name)}
     scope :authors, -> {where(authors.name)}
 
     def delete_all_likes
