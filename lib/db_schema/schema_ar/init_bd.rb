@@ -1,11 +1,11 @@
 require 'active_record'
 require_relative 'config_bd'
-require_relative 'schema/authors'
-require_relative 'schema/publishers'
-require_relative 'schema/books'
-require_relative 'schema/authors_books'
-require_relative 'schema/users'
-require_relative 'schema/likes'
+require_relative 'authors'
+require_relative 'publishers'
+require_relative 'books'
+require_relative 'authors_books'
+require_relative 'users'
+require_relative 'likes'
 
 
 #Criando a estrutura

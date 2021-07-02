@@ -12,49 +12,67 @@
 
 ActiveRecord::Schema.define(version: 2021_07_01_180157) do
 
-  create_table "authors", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name", limit: 45, null: false
-    t.date "born_date", null: false
-  end
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "btree_gin"
+  enable_extension "btree_gist"
+  enable_extension "citext"
+  enable_extension "cube"
+  enable_extension "dblink"
+  enable_extension "dict_int"
+  enable_extension "dict_xsyn"
+  enable_extension "earthdistance"
+  enable_extension "fuzzystrmatch"
+  enable_extension "hstore"
+  enable_extension "intarray"
+  enable_extension "ltree"
+  enable_extension "pg_stat_statements"
+  enable_extension "pg_trgm"
+  enable_extension "pgcrypto"
+  enable_extension "pgrowlocks"
+  enable_extension "pgstattuple"
+  enable_extension "plpgsql"
+  enable_extension "tablefunc"
+  enable_extension "unaccent"
+  enable_extension "uuid-ossp"
+  enable_extension "xml2"
 
-  create_table "authors_books", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.integer "author_id", null: false
-    t.integer "book_id", null: false
-    t.index ["author_id", "book_id"], name: "author_id", unique: true
-    t.index ["book_id"], name: "book_id"
-  end
-
-  create_table "books", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name", limit: 45, null: false
-    t.boolean "published", null: false
-    t.integer "publisher_id", null: false
-    t.index ["publisher_id"], name: "publisher_id"
-  end
-
-  create_table "likes", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "ref_type", limit: 45
-    t.integer "ref_id"
-    t.index ["user_id", "ref_type", "ref_id"], name: "user_id", unique: true
-  end
-
-  create_table "publishers", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name", limit: 45, null: false
-  end
-
-  create_table "teste_rakes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "authors", force: :cascade do |t|
     t.string "name"
     t.date "born_date"
-    t.float "valor_real"
   end
 
-  create_table "users", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name", limit: 45
+  create_table "authors_books", force: :cascade do |t|
+    t.bigint "book_id"
+    t.bigint "author_id"
+    t.index ["author_id"], name: "index_authors_books_on_author_id"
+    t.index ["book_id"], name: "index_authors_books_on_book_id"
+  end
+
+  create_table "books", force: :cascade do |t|
+    t.string "name"
+    t.integer "published"
+    t.bigint "publisher_id"
+    t.index ["publisher_id"], name: "index_books_on_publisher_id"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "ref_type"
+    t.integer "ref_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "publishers", force: :cascade do |t|
+    t.string "name"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
     t.date "born_date"
   end
 
-  add_foreign_key "authors_books", "authors", name: "authors_books_ibfk_1"
-  add_foreign_key "authors_books", "books", name: "authors_books_ibfk_2"
-  add_foreign_key "books", "publishers", name: "books_ibfk_1"
-  add_foreign_key "likes", "users", name: "likes_ibfk_1"
+  add_foreign_key "authors_books", "authors"
+  add_foreign_key "authors_books", "books"
+  add_foreign_key "books", "publishers"
+  add_foreign_key "likes", "users"
 end
